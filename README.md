@@ -1,34 +1,25 @@
-textdomain-overwrite
-====================
+PT Variants
+==========
+Contributors: wpportugal, alvarogois, pereirinha
+Tags: portuguese, translations, 
+Requires at least: 4.2.1
+Tested up to: 4.2.2
+Stable tag: 4.2
+License: GPLv3
+License URI: http://www.gnu.org/licenses/gpl-3.0
 
-A simple plugin which enables a user to overwrite localization string from the WordPress core, 
-plugins and themes, using it's own language files
+Choose the Portuguese variant that suits your needs. You can choose between Portuguese orthografic agreement or Informal Portuguese. This project it's being curated by the WordPress Portuguese Community
 
+##Installation
 
-## Usage
+1. Upload the entire 'pt-variants' folder to the '/wp-content/plugins/' directory
+1. Activate the plugin through the 'Plugins' menu in WordPress
+1. Go to Options > General to change settings
 
-Just create a subfolder named `overwrites` in the `WP_LANG_DIR` folder (most probably /wp-content/languages).
-The plugin does not distinguish if a mofile is used by a plugin, theme or even the core. ~Just name it after
-the textdomain, followed by the locale, separated with a dash. This is how your folder structure might look like,
-if you overwrite the core, the jetpack plugin and the twentythirteen theme for the locale `de_DE`:
+##Frequently Asked Questions
 
-```
-wp-content
-├── languages
-│   └── overwrites
-│       ├── default-de_DE.mo
-│       ├── jetpack-de_DE.mo
-│       ├── twentythirteen-de_DE.mo
+* I go to Options > General but I can't see any options related with this plugin
+    * Make sure you've selected first Portuguese from Portugal as your locale.
 
-```
-
-All files must be prepended with the name of the textdomain. The textdomain for the core is `default`.
-
-## Changelog:
-
-# Version 0.2
-- First draft plugin version using procedural programming and a rather compilcated folder structure
-
-# Version 1.0
-- Rewrite the whole plugin to an object oriented version
-- Dramatically simplify the folder and naming structure, enabling themes/plugins/core to share a textdomain
+##Changelog
+0.1 into the wild

@@ -26,7 +26,6 @@ if ( ! class_exists( 'PortugueseVariants' ) ) {
 		private $locals;
 		private $variants;
 
-
 		function __construct() {
 
 			// Locale definition
@@ -38,29 +37,10 @@ if ( ! class_exists( 'PortugueseVariants' ) ) {
 			}
 
 			// Register plugin textdomain
-			add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
+			add_action( 'admin_init', array( $this, 'load_textdomain' ) );
 
 			// Translations path
 			$this->overwrite_folder = trailingslashit( plugin_dir_path( __FILE__ ) . 'languages' );
-
-			// Diferent translation projects
-			$this->locals = array(
-				'default' => __( 'Front end', 'pt_variants' ),
-				'admin' => __( 'Back end', 'pt_variants' ),
-			);
-
-			// Options available
-			$this->variants = array(
-				'none'      => __( 'Default portuguese translation', 'pt_variants' ),
-				'pt_PT-AO'  => __( 'Portuguese orthographic agreement', 'pt_variants' ),
-				'pt_PT-INF' => __( 'Informal Portuguese', 'pt_variants' ),
-			);
-
-			$local_values = array_keys( $this->locals );
-
-			// Get variants already in use
-			$this->variants_in_use[ $local_values[0] ] = get_option( SELF::FE_VERSION_OPTION_NAME );
-			$this->variants_in_use[ $local_values[1] ] = get_option( SELF::BE_VERSION_OPTION_NAME );
 
 			// register action that is triggered, whenever a textdomain is loaded
 			add_action( 'override_load_textdomain', array( $this, 'overwrite_textdomain' ), 10, 3 );
@@ -69,20 +49,41 @@ if ( ! class_exists( 'PortugueseVariants' ) ) {
 			add_action( 'admin_init', array( $this, 'admin_init' ) );
 		}
 
-		public function load() {
+		function load() {
 			if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
 				$this->install();
 			}
+
+			// Diferent translation projects
+			$this->locals = array(
+				'default' => __( 'Front end', 'pt_variants' ),
+				'admin' => __( 'Back end', 'pt_variants' ),
+			);
+
+			$local_values = array_keys( $this->locals );
+
+			// Get variants already in use
+			$this->variants_in_use[ $local_values[0] ] = get_option( self::FE_VERSION_OPTION_NAME );
+			$this->variants_in_use[ $local_values[1] ] = get_option( self::BE_VERSION_OPTION_NAME );
+			// For multisite installs
+			$this->variants_in_use[ $local_values[1] . '-network' ] = get_option( self::BE_VERSION_OPTION_NAME );
 		}
 
-		static function load_textdomain() {
+		function load_textdomain() {
 			load_plugin_textdomain( 'pt_variants', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+
+			// Options available
+			$this->variants = array(
+				'none'      => __( 'Default portuguese translation', 'pt_variants' ),
+				'pt_PT-AO'  => __( 'Portuguese orthographic agreement', 'pt_variants' ),
+				'pt_PT-INF' => __( 'Informal Portuguese', 'pt_variants' ),
+			);
 		}
 
 		/**
 		 * Overwrite strings
 		 */
-		public function overwrite_textdomain( $override, $domain, $mofile ) {
+		function overwrite_textdomain( $override, $domain, $mofile ) {
 			// if the filter was not called with an overwrite mofile, return false which will proceed with the mofile given and prevents an endless recursion
 			if ( strpos( $mofile, $this->overwrite_folder ) !== false ) {
 				return false;
@@ -112,31 +113,37 @@ if ( ! class_exists( 'PortugueseVariants' ) ) {
 		/**
 		 * Admin stuff
 		 */
-		public function admin_init() {
-			register_setting( 'general', SELF::FE_VERSION_OPTION_NAME );
-			register_setting( 'general', SELF::BE_VERSION_OPTION_NAME );
+		function admin_init() {
+			add_settings_section(
+				'pt_variants_section',
+				__( 'Portuguese variants', 'pt_variants' ),
+				null,
+				'general'
+			);
 			add_settings_field(
-				'pt_variants_fe',
-				'<label for="' . SELF::FE_VERSION_OPTION_NAME . '">' . __( 'Front end' , 'pt_variants' ) . '</label>' ,
+				self::FE_VERSION_OPTION_NAME,
+				'<label for="' . self::FE_VERSION_OPTION_NAME . '">' . __( 'Front end' , 'pt_variants' ) . '</label>' ,
 				array( &$this, 'options_pt_variants' ),
 				'general',
-				'default',
+				'pt_variants_section',
 				array(
-					'key' => SELF::FE_VERSION_OPTION_NAME,
+					'key' => self::FE_VERSION_OPTION_NAME,
 					'in_use' => $this->variants_in_use['default'],
 				)
 			);
 			add_settings_field(
-				'pt_variants_be',
-				'<label for="' . SELF::BE_VERSION_OPTION_NAME . '">' . __( 'Back end' , 'pt_variants' ) . '</label>' ,
+				self::BE_VERSION_OPTION_NAME,
+				'<label for="' . self::BE_VERSION_OPTION_NAME . '">' . __( 'Back end' , 'pt_variants' ) . '</label>' ,
 				array( &$this, 'options_pt_variants' ),
 				'general',
-				'default',
+				'pt_variants_section',
 				array(
-					'key' => SELF::BE_VERSION_OPTION_NAME,
+					'key' => self::BE_VERSION_OPTION_NAME,
 					'in_use' => $this->variants_in_use['admin'],
 				)
 			);
+			register_setting( 'general', self::FE_VERSION_OPTION_NAME );
+			register_setting( 'general', self::BE_VERSION_OPTION_NAME );
 		}
 
 		/**
@@ -145,33 +152,31 @@ if ( ! class_exists( 'PortugueseVariants' ) ) {
 		function options_pt_variants( $args ) { ?>
 			<select name="<?php echo esc_attr( $args['key'] ); ?>" id="<?php echo esc_attr( $args['key'] ); ?>">
 				<?php foreach ( $this->variants as $code => $title ) : ?>
-					<option value="<?php echo esc_attr( $code ); ?>"<?php echo ( $args['in_use'] === $code ) ? ' selected' : '' ?>><?php echo $title ?></option>
+					<option value="<?php echo esc_attr( $code ); ?>"<?php echo ( $args['in_use'] === $code ) ? ' selected' : '' ?>><?php echo esc_html( $title ) ?></option>
 				<?php endforeach; ?>
 			</select>
 			<?php
 		}
 
 		/** Lifecycle methods **/
-
 		private function install() {
-			$installed_version = get_option( SELF::VERSION_OPTION_NAME );
+			$installed_version = get_option( self::VERSION_OPTION_NAME );
 
 			if ( ! $installed_version ) {
-				$variants = array_keys( $this->variants );
 				// initial install, set the version of the plugin on options table
-				add_option( SELF::VERSION_OPTION_NAME, SELF::VERSION );
-				add_option( SELF::FE_VERSION_OPTION_NAME, $variants[0] );
-				add_option( SELF::BE_VERSION_OPTION_NAME, $variants[1] );
+				add_option( self::VERSION_OPTION_NAME, self::VERSION );
+				add_option( self::FE_VERSION_OPTION_NAME, 'pt_PT-AO' );
+				add_option( self::BE_VERSION_OPTION_NAME, 'pt_PT-AO' );
 			}
 
-			if ( SELF::VERSION !== $installed_version ) {
+			if ( self::VERSION !== $installed_version ) {
 				$this->upgrade();
 			}
 		}
 
 		// Run when plugin version number changes
 		private function upgrade() {
-			update_option( SELF::VERSION_OPTION_NAME, SELF::VERSION );
+			update_option( self::VERSION_OPTION_NAME, self::VERSION );
 		}
 
 	}

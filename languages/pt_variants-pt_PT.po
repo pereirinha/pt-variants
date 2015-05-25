@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-05-25 02:24-0000\n"
-"PO-Revision-Date: 2015-05-25 02:27-0000\n"
-"Last-Translator: Metronet <webadmin@metronet.no>\n"
+"POT-Creation-Date: 2015-05-25 12:35-0000\n"
+"PO-Revision-Date: 2015-05-25 12:36-0000\n"
+"Last-Translator: Marco Pereirinha <marcopereirinha@gmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -15,22 +15,26 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: pt-variants.php:45 pt-variants.php:111
+#: pt-variants.php:66 pt-variants.php:130
 msgid "Front end"
 msgstr "Zona publica\t"
 
-#: pt-variants.php:46 pt-variants.php:122
+#: pt-variants.php:67 pt-variants.php:141
 msgid "Back end"
 msgstr "Zona de administração"
 
-#: pt-variants.php:51
+#: pt-variants.php:82
 msgid "Default portuguese translation"
 msgstr "Tradução portuguesa por defeito"
 
-#: pt-variants.php:52
+#: pt-variants.php:83
 msgid "Portuguese orthographic agreement"
 msgstr "Português Acordo Ortográfico"
 
-#: pt-variants.php:53
+#: pt-variants.php:84
 msgid "Informal Portuguese"
 msgstr "Português informal"
+
+#: pt-variants.php:124
+msgid "Portuguese variants"
+msgstr "Variantes do Português"

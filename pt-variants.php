@@ -56,9 +56,11 @@ if ( ! class_exists( 'PortugueseVariants' ) ) {
 				'pt_PT-INF' => __( 'Informal Portuguese', 'pt_variants' ),
 			);
 
+			$local_values = array_keys( $this->locals );
+
 			// Get variants already in use
-			$this->variants_in_use[ array_keys( $this->locals )[0] ] = get_option( SELF::FE_VERSION_OPTION_NAME );
-			$this->variants_in_use[ array_keys( $this->locals )[1] ] = get_option( SELF::BE_VERSION_OPTION_NAME );
+			$this->variants_in_use[ $local_values[0] ] = get_option( SELF::FE_VERSION_OPTION_NAME );
+			$this->variants_in_use[ $local_values[1] ] = get_option( SELF::BE_VERSION_OPTION_NAME );
 
 			// register action that is triggered, whenever a textdomain is loaded
 			add_action( 'override_load_textdomain', array( $this, 'overwrite_textdomain' ), 10, 3 );
@@ -155,10 +157,11 @@ if ( ! class_exists( 'PortugueseVariants' ) ) {
 			$installed_version = get_option( SELF::VERSION_OPTION_NAME );
 
 			if ( ! $installed_version ) {
+				$variants = array_keys( $this->variants );
 				// initial install, set the version of the plugin on options table
 				add_option( SELF::VERSION_OPTION_NAME, SELF::VERSION );
-				add_option( SELF::FE_VERSION_OPTION_NAME, array_keys( $this->variants )[0] );
-				add_option( SELF::BE_VERSION_OPTION_NAME, array_keys( $this->variants )[1] );
+				add_option( SELF::FE_VERSION_OPTION_NAME, $variants[0] );
+				add_option( SELF::BE_VERSION_OPTION_NAME, $variants[1] );
 			}
 
 			if ( SELF::VERSION !== $installed_version ) {

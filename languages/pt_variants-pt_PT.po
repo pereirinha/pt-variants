@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2015-05-25 12:35-0000\n"
-"PO-Revision-Date: 2015-05-25 12:36-0000\n"
-"Last-Translator: Marco Pereirinha <marcopereirinha@gmail.com>\n"
+"PO-Revision-Date: 2015-05-25 23:29-0000\n"
+"Last-Translator: Alvaro Gois dos Santos <alvarogois@ovni.org>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: pt-variants.php:66 pt-variants.php:130
 msgid "Front end"
-msgstr "Zona publica\t"
+msgstr "Zona pública\t"
 
 #: pt-variants.php:67 pt-variants.php:141
 msgid "Back end"
@@ -25,11 +25,11 @@ msgstr "Zona de administração"
 
 #: pt-variants.php:82
 msgid "Default portuguese translation"
-msgstr "Tradução portuguesa por defeito"
+msgstr "Tradução portuguesa por omissão"
 
 #: pt-variants.php:83
 msgid "Portuguese orthographic agreement"
-msgstr "Português Acordo Ortográfico"
+msgstr "Português Acordo Ortográfico 1990"
 
 #: pt-variants.php:84
 msgid "Informal Portuguese"
@@ -37,4 +37,4 @@ msgstr "Português informal"
 
 #: pt-variants.php:124
 msgid "Portuguese variants"
-msgstr "Variantes do Português"
+msgstr "Variantes de português"

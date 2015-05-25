@@ -1,13 +1,17 @@
 === PT Variants ===
-Contributors: wpportugal, alvarogois, pereirinha
-Tags: portuguese, translations, 
+Contributors: wpportugal, pereirinha, alvarogois
+Tags: portuguese, translations, AO90, language, packs 
 Requires at least: 4.2.1
 Tested up to: 4.2.2
 Stable tag: 4.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0
 
-Choose the Portuguese variant that suits your needs. You can choose between Portuguese orthografic agreement or Informal Portuguese. This project it's being curated by the WordPress Portuguese Community
+Choose the Portuguese variant that suits your needs. Though Portuguese has no formal variants in Portugal, in WordPress, beside the default, you can now choose Portuguese Orthografic Agreement form or Informal Portuguese. This project is being curated by the WordPress Portuguese Community. Let us know if it's useful or if something isn't right.
+
+The language files included with this plugin are exported from the official WordPress repository (GlotPress). Not every file has 100% strings translated, therefore, you'll probably catch some text in the default WordPress language.
+
+The Portuguese Orthografic Agreement form is obtained by conversion with Lince software, by ILTEC (http://www.portaldalinguaportuguesa.org/?action=lince).
 
 == Installation ==
 

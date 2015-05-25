@@ -1,11 +1,17 @@
 PT Variants
 ==========
 Contributors: wpportugal, alvarogois, pereirinha
+
 Tags: portuguese, translations, 
+
 Requires at least: 4.2.1
+
 Tested up to: 4.2.2
+
 Stable tag: 4.2
+
 License: GPLv3
+
 License URI: http://www.gnu.org/licenses/gpl-3.0
 
 Choose the Portuguese variant that suits your needs. You can choose between Portuguese orthografic agreement or Informal Portuguese. This project it's being curated by the WordPress Portuguese Community

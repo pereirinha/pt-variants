@@ -20,5 +20,9 @@ Choose the Portuguese variant that suits your needs. You can choose between Port
 = I go to Options > General but I can't see any options related with this plugin =
 Make sure you've selected first Portuguese from Portugal as your locale.
 
+== Screenshots ==
+
+1. Options > Genereal page is where you define which variants will be used in each scenario. [Click for larger image view](screenshot-1.jpg)
+
 == Changelog ==
 0.1 into the wild

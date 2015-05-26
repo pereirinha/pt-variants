@@ -14,7 +14,7 @@ License: GPLv3
 
 License URI: http://www.gnu.org/licenses/gpl-3.0
 
-Choose the Portuguese variant that suits your needs. Though Portuguese has no formal variants in Portugal, in WordPress, beside the default, you can now choose Portuguese Orthografic Agreement form or Informal Portuguese. This project is being curated by the [WordPress Portuguese Community](http://palheta.wp-portugal.com). Let us know if it's useful or if something isn't right.
+Choose the Portuguese variant that suits your needs. Though Portuguese has no official variants in Portugal, in WordPress, beside the default, you can now choose the Portuguese Orthografic Agreement form or Informal Portuguese. This project is being curated by the [WordPress Portuguese Community](http://palheta.wp-portugal.com). Let us know if it's useful or if something isn't right.
 
 The language files included with this plugin are exported from the official [WordPress repository (GlotPress)](https://translate.wordpress.org/projects/wp/dev). Not every file has 100% strings translated, therefore, you'll probably catch some text in the default WordPress language.
 

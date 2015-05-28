@@ -2,7 +2,7 @@ PT Variants
 ==========
 Contributors: wpportugal, pereirinha, alvarogois
 
-Tags: portuguese, translations, AO90, language, packs
+Tags: portuguese, translations, AO90, language, packs, português, Portugal, tradução
 
 Requires at least: 4.2.1
 

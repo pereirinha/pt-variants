@@ -24,10 +24,10 @@ if ( ! class_exists( 'PortugueseVariants' ) ) {
 		private $overwrite_folder;
 		private $variants_in_use;
 		private $locals;
+		private $local_values;
 		private $variants;
 
 		function __construct() {
-
 			// Locale definition
 			$this->locale = get_locale();
 
@@ -43,7 +43,7 @@ if ( ! class_exists( 'PortugueseVariants' ) ) {
 			$this->overwrite_folder = trailingslashit( plugin_dir_path( __FILE__ ) . 'languages' );
 
 			// register action that is triggered, whenever a textdomain is loaded
-			add_action( 'override_load_textdomain', array( $this, 'overwrite_textdomain' ), 10, 3 );
+			add_action( 'override_load_textdomain', array( &$this, 'overwrite_textdomain' ), 10, 3 );
 
 			// Register action that will fire admin settigns
 			add_action( 'admin_init', array( $this, 'admin_init' ) );
@@ -60,13 +60,13 @@ if ( ! class_exists( 'PortugueseVariants' ) ) {
 				'admin' => __( 'Back end', 'pt_variants' ),
 			);
 
-			$local_values = array_keys( $this->locals );
+			$this->local_values = array_keys( $this->locals );
 
 			// Get variants already in use
-			$this->variants_in_use[ $local_values[0] ] = get_option( self::FE_VERSION_OPTION_NAME );
-			$this->variants_in_use[ $local_values[1] ] = get_option( self::BE_VERSION_OPTION_NAME );
+			$this->variants_in_use[ $this->local_values[0] ] = get_option( self::FE_VERSION_OPTION_NAME );
+			$this->variants_in_use[ $this->local_values[1] ] = get_option( self::BE_VERSION_OPTION_NAME );
 			// For multisite installs
-			$this->variants_in_use[ $local_values[1] . '-network' ] = get_option( self::BE_VERSION_OPTION_NAME );
+			$this->variants_in_use[ $this->local_values[1] . '-network' ] = get_option( self::BE_VERSION_OPTION_NAME );
 		}
 
 		function load_textdomain() {
@@ -84,29 +84,28 @@ if ( ! class_exists( 'PortugueseVariants' ) ) {
 		 * Overwrite strings
 		 */
 		function overwrite_textdomain( $override, $domain, $mofile ) {
+			if ( ! in_array( $domain, $this->local_values ) ) {
+				return false;
+			}
+
 			// if the filter was not called with an overwrite mofile, return false which will proceed with the mofile given and prevents an endless recursion
 			if ( strpos( $mofile, $this->overwrite_folder ) !== false ) {
 				return false;
 			}
-
 			// Act on all locals
 			foreach ( $this->variants_in_use as $local => $variant ) {
-
 				// There's nothing to do here
 				if ( 'none' === $variant ) {
 					continue;
 				}
 				// if an overwrite file exists, load it to overwrite the original strings
 				$overwrite_mofile = $local . '-' . $variant . '.mo';
-
 				// check if a global overwrite mofile exists and load it
 				$global_overwrite_file = $this->overwrite_folder . $overwrite_mofile;
-
 				if ( file_exists( $global_overwrite_file ) ) {
 					load_textdomain( $domain, $global_overwrite_file );
 				}
 			}
-
 			return false;
 		}
 

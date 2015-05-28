@@ -14,9 +14,10 @@ License: GPLv3
 
 License URI: http://www.gnu.org/licenses/gpl-3.0
 
+--
 [PT]
 
-PT Variants é uma forma de aplicar o Acordo Ortográfico de 1990 ao WordPress em português de Portugal. Também permite aplicar uma versão de português informal (mantida pelo [Nuno Barreiro](https://profiles.wordpress.org/nbar) e que segue a norma pré-AO90).
+PT Variants é um plugin WordPress para aplicar o Acordo Ortográfico de 1990 ao WordPress em português de Portugal. Também permite aplicar uma versão de português informal (mantida pelo [Nuno Barreiro](https://profiles.wordpress.org/nbar) e que segue a norma pré-AO90).
 
 Os ficheiros de linguagem incluídos com o plugin são exportados do [repositório oficial de línguas do WordPress (GlotPress)](https://translate.wordpress.org/languages/pt), mantido pela [equipa de tradução](https://make.wordpress.org/polyglots/teams/?locale=pt_PT) da [Comunidade Portuguesa de WordPress](http://wp-portugal.com). A versão AO90 é convertida usando o Lince, desenvolvido pelo [ILTEC](http://www.portaldalinguaportuguesa.org/?action=lince).
 
@@ -28,6 +29,7 @@ O PT Variants partiu de algumas ideias do plugin [textdomain-overwrite](https://
 
 (A imagem do plugin é descaradamente baseada [neste modelo](http://pt.365psd.com/psd/free-psd-switch-buttons-template-53516).)
 
+--
 [EN]
 
 Choose the Portuguese variant that suits your needs. Though Portuguese has no official variants in Portugal, in WordPress, beside the default (the 1945 norm, reviewed in 1973), you can now choose the Portuguese Orthografic Agreement (1990) form or Informal Portuguese. This project is being curated by the WordPress Portuguese Community. Let us know if it's useful or if something isn't right.

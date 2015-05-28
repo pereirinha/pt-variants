@@ -25,6 +25,7 @@ O PT Variants partiu de algumas ideias do plugin [textdomain-overwrite](https://
 
 (A imagem acima é descaradamente baseada [neste modelo 365PSD](http://pt.365psd.com/psd/free-psd-switch-buttons-template-53516).)
 
+
 [EN]
 
 Choose the Portuguese variant that suits your needs. Though Portuguese has no official variants in Portugal, in WordPress, beside the default (the 1945 norm, reviewed in 1973), you can now choose the Portuguese Orthografic Agreement (1990) form or Informal Portuguese. This project is being curated by the WordPress Portuguese Community. Let us know if it's useful or if something isn't right.
